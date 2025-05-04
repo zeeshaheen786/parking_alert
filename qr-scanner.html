@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Scanner - ParkAlert</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="alerts.html">Alerts</a>
+      <a href="vehicle-management.html">Vehicles</a>
+      <a href="parking-history.html">History</a>
+      <a href="qr-scanner.html" class="active">QR Scanner</a>
+      <a href="profile.html">Profile</a>
+      <a href="settings.html">Settings</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+      <a href="logout.html">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="qr-scanner">
+      <h1>Scan QR Code</h1>
+      <p>Point your camera at the QR code provided at the parking location to check-in or check-out.</p>
+
+      <div id="camera">
+        <video id="preview"></video>
+      </div>
+
+      <button id="start-scan">Start Scanning</button>
+      <p id="scan-result"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ParkAlert. All rights reserved.</p>
+  </footer>
+
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <script>
+    const startButton = document.getElementById("start-scan");
+    const resultEl = document.getElementById("scan-result");
+
+    startButton.addEventListener("click", () => {
+      const html5QrCode = new Html5Qrcode("camera");
+      const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+        resultEl.innerText = `Scanned: ${decodedText}`;
+        html5QrCode.stop();
+      };
+
+      html5QrCode.start(
+        { facingMode: "environment" },
+        {
+          fps: 10,
+          qrbox: 250
+        },
+        qrCodeSuccessCallback
+      ).catch(err => {
+        resultEl.innerText = `Error: ${err}`;
+      });
+    });
+  </script>
+</body>
+</html>

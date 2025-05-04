@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Management - ParkAlert</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="alerts.html">Alerts</a>
+      <a href="vehicle-management.html" class="active">Vehicles</a>
+      <a href="parking-history.html">History</a>
+      <a href="qr-scanner.html">QR Scanner</a>
+      <a href="profile.html">Profile</a>
+      <a href="settings.html">Settings</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+      <a href="logout.html">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="vehicle-management">
+      <h1>Manage Your Vehicles</h1>
+
+      <form action="#" method="POST" class="vehicle-form">
+        <label for="vehicle-number">Vehicle Number:</label>
+        <input type="text" id="vehicle-number" name="vehicle-number" required>
+
+        <label for="vehicle-model">Model:</label>
+        <input type="text" id="vehicle-model" name="vehicle-model" required><br>
+
+        <label for="vehicle-color">Color:</label>
+        <input type="text" id="vehicle-color" name="vehicle-color" required>
+
+        <button type="submit">Add Vehicle</button>
+      </form>
+
+      <h2>Your Registered Vehicles</h2>
+      <ul class="vehicle-list">
+        <li>
+          <strong>ABC-1234</strong> - Toyota Corolla (White)
+          <button>Remove</button>
+        </li>
+        <li>
+          <strong>XYZ-5678</strong> - Honda Civic (Black)
+          <button>Remove</button>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ParkAlert. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

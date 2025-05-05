@@ -1,0 +1,76 @@
+<!-- qrcode.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generate Parking QR Code</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <style>
+    .qrcode-container {
+      max-width: 500px;
+      margin: 100px auto;
+      padding: 30px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 8px;
+      width: 80%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    #qrcode {
+      margin-top: 20px;
+      margin-left: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="qrcode-container">
+    <h2>Generate QR Code for Parking</h2>
+    <input type="text" id="vehicle" placeholder="Vehicle Number" required><br>
+    <input type="text" id="location" placeholder="Parking Location" required><br>
+    <input type="datetime-local" id="datetime" required><br>
+    <button onclick="generateQR()">Generate QR Code</button>
+
+    <div id="qrcode"></div>
+    <button onclick="downloadQR()">Download QR Code</button>
+  </div>
+
+  <script>
+    let qr;
+
+    function generateQR() {
+      const vehicle = document.getElementById("vehicle").value;
+      const location = document.getElementById("location").value;
+      const datetime = document.getElementById("datetime").value;
+
+      const data = `Vehicle: ${vehicle}\nLocation: ${location}\nDate/Time: ${datetime}`;
+
+      document.getElementById("qrcode").innerHTML = "";
+
+      qr = new QRCode(document.getElementById("qrcode"), {
+        text: data,
+        width: 256,
+        height: 256,
+      });
+    }
+
+    function downloadQR() {
+      const img = document.querySelector('#qrcode img');
+      if (!img) return alert("Generate the QR code first.");
+      const url = img.src;
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'parkalert-qrcode.png';
+      a.click();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <meta http-equiv="refresh" content="0; url=https://example.com" id="meta-refresh">
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const to = params.get("to");
+      if (to) {
+        document.getElementById("meta-refresh").setAttribute("content", `0; url=${to}`);
+        window.location.replace(to);
+      } else {
+        document.write("Missing 'to' parameter.");
+      }
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>

